@@ -1,0 +1,1497 @@
+{
+ "language": "en",
+ "language_label": "English",
+ "source_script_hash": "1b10ba8d6a8578ae55ae0a1c64a61b3082213ab4",
+ "categories": [
+  "system",
+  "distances",
+  "corners",
+  "corner modifiers",
+  "links",
+  "hazards",
+  "crests & jumps",
+  "cuts & lines",
+  "landmarks",
+  "speed & braking",
+  "surface",
+  "other"
+ ],
+ "phrases": [
+  {
+   "id": "system_precountdown_1",
+   "text": "Good luck!",
+   "category": "system",
+   "file_stem": "pacenote_system_precountdown_1",
+   "system_key": "precountdown",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_precountdown_2",
+   "text": "Best of luck!",
+   "category": "system",
+   "file_stem": "pacenote_system_precountdown_2",
+   "system_key": "precountdown",
+   "system_variant": 2,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_countdown5_1",
+   "text": "five",
+   "category": "system",
+   "file_stem": "pacenote_system_countdown5_1",
+   "system_key": "countdown5",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_countdown4_1",
+   "text": "four",
+   "category": "system",
+   "file_stem": "pacenote_system_countdown4_1",
+   "system_key": "countdown4",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_countdown3_1",
+   "text": "three",
+   "category": "system",
+   "file_stem": "pacenote_system_countdown3_1",
+   "system_key": "countdown3",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_countdown2_1",
+   "text": "two",
+   "category": "system",
+   "file_stem": "pacenote_system_countdown2_1",
+   "system_key": "countdown2",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_countdown1_1",
+   "text": "one",
+   "category": "system",
+   "file_stem": "pacenote_system_countdown1_1",
+   "system_key": "countdown1",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_countdowngo_1",
+   "text": "go",
+   "category": "system",
+   "file_stem": "pacenote_system_countdowngo_1",
+   "system_key": "countdowngo",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_warningSeconds60_1",
+   "text": "60 seconds",
+   "category": "system",
+   "file_stem": "pacenote_system_warningSeconds60_1",
+   "system_key": "warningSeconds60",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_warningSeconds30_1",
+   "text": "30 seconds",
+   "category": "system",
+   "file_stem": "pacenote_system_warningSeconds30_1",
+   "system_key": "warningSeconds30",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_warningSeconds15_1",
+   "text": "15 seconds",
+   "category": "system",
+   "file_stem": "pacenote_system_warningSeconds15_1",
+   "system_key": "warningSeconds15",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_warningSeconds10_1",
+   "text": "10 seconds",
+   "category": "system",
+   "file_stem": "pacenote_system_warningSeconds10_1",
+   "system_key": "warningSeconds10",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_commsCheck_1",
+   "text": "intercom check",
+   "category": "system",
+   "file_stem": "pacenote_system_commsCheck_1",
+   "system_key": "commsCheck",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_beltsCheck_1",
+   "text": "check your belts are tight.",
+   "category": "system",
+   "file_stem": "pacenote_system_beltsCheck_1",
+   "system_key": "beltsCheck",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_rescheduled_1",
+   "text": "We've been given a new start minute. Make sure the car is staged at the start line.",
+   "category": "system",
+   "file_stem": "pacenote_system_rescheduled_1",
+   "system_key": "rescheduled",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "system_falseStart_1",
+   "text": "You jumped the start.",
+   "category": "system",
+   "file_stem": "pacenote_system_falseStart_1",
+   "system_key": "falseStart",
+   "system_variant": 1,
+   "single_take": true,
+   "hint": null
+  },
+  {
+   "id": "40",
+   "text": "40",
+   "category": "distances",
+   "file_stem": "pacenote_40",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "50",
+   "text": "50",
+   "category": "distances",
+   "file_stem": "pacenote_50",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "60",
+   "text": "60",
+   "category": "distances",
+   "file_stem": "pacenote_60",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "70",
+   "text": "70",
+   "category": "distances",
+   "file_stem": "pacenote_70",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "80",
+   "text": "80",
+   "category": "distances",
+   "file_stem": "pacenote_80",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "90",
+   "text": "90",
+   "category": "distances",
+   "file_stem": "pacenote_90",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "100",
+   "text": "100",
+   "category": "distances",
+   "file_stem": "pacenote_100",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "150",
+   "text": "150",
+   "category": "distances",
+   "file_stem": "pacenote_150",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "200",
+   "text": "200",
+   "category": "distances",
+   "file_stem": "pacenote_200",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "250",
+   "text": "250",
+   "category": "distances",
+   "file_stem": "pacenote_250",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "300",
+   "text": "300",
+   "category": "distances",
+   "file_stem": "pacenote_300",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "350",
+   "text": "350",
+   "category": "distances",
+   "file_stem": "pacenote_350",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "400",
+   "text": "400",
+   "category": "distances",
+   "file_stem": "pacenote_400",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "450",
+   "text": "450",
+   "category": "distances",
+   "file_stem": "pacenote_450",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "500",
+   "text": "500",
+   "category": "distances",
+   "file_stem": "pacenote_500",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "550",
+   "text": "550",
+   "category": "distances",
+   "file_stem": "pacenote_550",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "600",
+   "text": "600",
+   "category": "distances",
+   "file_stem": "pacenote_600",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "650",
+   "text": "650",
+   "category": "distances",
+   "file_stem": "pacenote_650",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "700",
+   "text": "700",
+   "category": "distances",
+   "file_stem": "pacenote_700",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "750",
+   "text": "750",
+   "category": "distances",
+   "file_stem": "pacenote_750",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "800",
+   "text": "800",
+   "category": "distances",
+   "file_stem": "pacenote_800",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "850",
+   "text": "850",
+   "category": "distances",
+   "file_stem": "pacenote_850",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "900",
+   "text": "900",
+   "category": "distances",
+   "file_stem": "pacenote_900",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "950",
+   "text": "950",
+   "category": "distances",
+   "file_stem": "pacenote_950",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "1_km",
+   "text": "1 km",
+   "category": "distances",
+   "file_stem": "pacenote_1_km",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "1_point_2_5_km",
+   "text": "1 point 2 5 km",
+   "category": "distances",
+   "file_stem": "pacenote_1_point_2_5_km",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "1_point_5_km",
+   "text": "1 point 5 km",
+   "category": "distances",
+   "file_stem": "pacenote_1_point_5_km",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "1_point_7_5_km",
+   "text": "1 point 7 5 km",
+   "category": "distances",
+   "file_stem": "pacenote_1_point_7_5_km",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "2_km",
+   "text": "2 km",
+   "category": "distances",
+   "file_stem": "pacenote_2_km",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "and",
+   "text": "and",
+   "category": "links",
+   "file_stem": "pacenote_and",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "into",
+   "text": "into",
+   "category": "links",
+   "file_stem": "pacenote_into",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "easy_right",
+   "text": "easy right",
+   "category": "corners",
+   "file_stem": "pacenote_easy_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "easy_left",
+   "text": "easy left",
+   "category": "corners",
+   "file_stem": "pacenote_easy_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "medium_right",
+   "text": "medium right",
+   "category": "corners",
+   "file_stem": "pacenote_medium_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "medium_left",
+   "text": "medium left",
+   "category": "corners",
+   "file_stem": "pacenote_medium_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "hard_right",
+   "text": "hard right",
+   "category": "corners",
+   "file_stem": "pacenote_hard_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "hard_left",
+   "text": "hard left",
+   "category": "corners",
+   "file_stem": "pacenote_hard_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "six_right",
+   "text": "six right",
+   "category": "corners",
+   "file_stem": "pacenote_six_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "six_left",
+   "text": "six left",
+   "category": "corners",
+   "file_stem": "pacenote_six_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "five_right",
+   "text": "five right",
+   "category": "corners",
+   "file_stem": "pacenote_five_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "five_left",
+   "text": "five left",
+   "category": "corners",
+   "file_stem": "pacenote_five_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "four_right",
+   "text": "four right",
+   "category": "corners",
+   "file_stem": "pacenote_four_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "four_left",
+   "text": "four left",
+   "category": "corners",
+   "file_stem": "pacenote_four_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "three_right",
+   "text": "three right",
+   "category": "corners",
+   "file_stem": "pacenote_three_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "three_left",
+   "text": "three left",
+   "category": "corners",
+   "file_stem": "pacenote_three_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "two_right",
+   "text": "two right",
+   "category": "corners",
+   "file_stem": "pacenote_two_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "two_left",
+   "text": "two left",
+   "category": "corners",
+   "file_stem": "pacenote_two_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "one_right",
+   "text": "one right",
+   "category": "corners",
+   "file_stem": "pacenote_one_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "one_left",
+   "text": "one left",
+   "category": "corners",
+   "file_stem": "pacenote_one_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "flat_left",
+   "text": "flat left",
+   "category": "corners",
+   "file_stem": "pacenote_flat_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "flat_right",
+   "text": "flat right",
+   "category": "corners",
+   "file_stem": "pacenote_flat_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "hairpin_left",
+   "text": "hairpin left",
+   "category": "corners",
+   "file_stem": "pacenote_hairpin_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "hairpin_right",
+   "text": "hairpin right",
+   "category": "corners",
+   "file_stem": "pacenote_hairpin_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "left",
+   "text": "left",
+   "category": "corners",
+   "file_stem": "pacenote_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "open_hairpin_left",
+   "text": "open hairpin left",
+   "category": "corners",
+   "file_stem": "pacenote_open_hairpin_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "open_hairpin_right",
+   "text": "open hairpin right",
+   "category": "corners",
+   "file_stem": "pacenote_open_hairpin_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "right",
+   "text": "right",
+   "category": "corners",
+   "file_stem": "pacenote_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "square_left",
+   "text": "square left",
+   "category": "corners",
+   "file_stem": "pacenote_square_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "square_right",
+   "text": "square right",
+   "category": "corners",
+   "file_stem": "pacenote_square_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "tight_hairpin_left",
+   "text": "tight hairpin left",
+   "category": "corners",
+   "file_stem": "pacenote_tight_hairpin_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "tight_hairpin_right",
+   "text": "tight hairpin right",
+   "category": "corners",
+   "file_stem": "pacenote_tight_hairpin_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "short",
+   "text": "short",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_short",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "half_long",
+   "text": "half long",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_half_long",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "long",
+   "text": "long",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_long",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "extra_long",
+   "text": "extra long",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_extra_long",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "opens",
+   "text": "opens",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_opens",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "opens_and_tightens",
+   "text": "opens and tightens",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_opens_and_tightens",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "opens_over_crest",
+   "text": "opens over crest",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_opens_over_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "over_crest_corner",
+   "text": "over crest",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_over_crest_2",
+   "system_key": null,
+   "system_variant": null,
+   "single_take": true,
+   "hint": "as a corner shape, e.g. \"three left over crest\""
+  },
+  {
+   "id": "tightens",
+   "text": "tightens",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_tightens",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "tightens_and_opens",
+   "text": "tightens and opens",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_tightens_and_opens",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "tightens_down",
+   "text": "tightens down",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_tightens_down",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "tightens_over_crest",
+   "text": "tightens over crest",
+   "category": "corner modifiers",
+   "file_stem": "pacenote_tightens_over_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "care",
+   "text": "care",
+   "category": "hazards",
+   "file_stem": "pacenote_care",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "caution",
+   "text": "caution",
+   "category": "hazards",
+   "file_stem": "pacenote_caution",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "double_caution",
+   "text": "double caution",
+   "category": "hazards",
+   "file_stem": "pacenote_double_caution",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "bad_drop",
+   "text": "bad drop",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_bad_drop",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "bad_kick",
+   "text": "bad kick",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_bad_kick",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "bumpy",
+   "text": "bumpy",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_bumpy",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "drop",
+   "text": "drop",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_drop",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "kick",
+   "text": "kick",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_kick",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "over_bump",
+   "text": "over bump",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_over_bump",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "chicane_left_entry",
+   "text": "chicane left entry",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_chicane_left_entry",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "chicane_right_entry",
+   "text": "chicane right entry",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_chicane_right_entry",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "big_crest",
+   "text": "big crest",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_big_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "crest",
+   "text": "crest",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "into_crest",
+   "text": "into crest",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_into_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "long_crest",
+   "text": "long crest",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_long_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "over_crest",
+   "text": "over crest",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_over_crest_1",
+   "system_key": null,
+   "system_variant": null,
+   "single_take": true,
+   "hint": "as a crest warning on its own"
+  },
+  {
+   "id": "small_crest",
+   "text": "small crest",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_small_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "big_cut",
+   "text": "big cut",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_big_cut",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "cut",
+   "text": "cut",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_cut",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "dont",
+   "text": "don't",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_dont",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "dont_cut",
+   "text": "don't cut",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_dont_cut",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "dont_cut_late",
+   "text": "don't cut late",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_dont_cut_late",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "early_cut",
+   "text": "early cut",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_early_cut",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "late_cut",
+   "text": "late cut",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_late_cut",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "small_cut",
+   "text": "small cut",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_small_cut",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "bad_dip",
+   "text": "bad dip",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_bad_dip",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "dip",
+   "text": "dip",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_dip",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "over_dip",
+   "text": "over dip",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_over_dip",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "through_dip",
+   "text": "through dip",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_through_dip",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "deceptive",
+   "text": "deceptive",
+   "category": "hazards",
+   "file_stem": "pacenote_deceptive",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "sudden",
+   "text": "sudden",
+   "category": "hazards",
+   "file_stem": "pacenote_sudden",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "down",
+   "text": "down",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_down",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "up",
+   "text": "up",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_up",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "bad_dip_jump",
+   "text": "bad dip jump",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_bad_dip_jump",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "bad_jump",
+   "text": "bad jump",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_bad_jump",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "big_jump",
+   "text": "big jump",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_big_jump",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "jump",
+   "text": "jump",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_jump",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "over_jump",
+   "text": "over jump",
+   "category": "crests & jumps",
+   "file_stem": "pacenote_over_jump",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "keep_in",
+   "text": "keep in",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_keep_in",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "keep_left",
+   "text": "keep left",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_keep_left",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "keep_left_over_crest",
+   "text": "keep left over crest",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_keep_left_over_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "keep_middle",
+   "text": "keep middle",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_keep_middle",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "keep_middle_over_crest",
+   "text": "keep middle over crest",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_keep_middle_over_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "keep_right",
+   "text": "keep right",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_keep_right",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "keep_right_over_crest",
+   "text": "keep right over crest",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_keep_right_over_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "at_junction",
+   "text": "at junction",
+   "category": "landmarks",
+   "file_stem": "pacenote_at_junction",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "at_rock",
+   "text": "at rock",
+   "category": "landmarks",
+   "file_stem": "pacenote_at_rock",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "at_tree",
+   "text": "at tree",
+   "category": "landmarks",
+   "file_stem": "pacenote_at_tree",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "into_bridge",
+   "text": "into bridge",
+   "category": "landmarks",
+   "file_stem": "pacenote_into_bridge",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "narrow_bridge",
+   "text": "narrow bridge",
+   "category": "landmarks",
+   "file_stem": "pacenote_narrow_bridge",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "over_bridge",
+   "text": "over bridge",
+   "category": "landmarks",
+   "file_stem": "pacenote_over_bridge",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "past_fence",
+   "text": "past fence",
+   "category": "landmarks",
+   "file_stem": "pacenote_past_fence",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "past_house",
+   "text": "past house",
+   "category": "landmarks",
+   "file_stem": "pacenote_past_house",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "past_junction",
+   "text": "past junction",
+   "category": "landmarks",
+   "file_stem": "pacenote_past_junction",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "past_rock",
+   "text": "past rock",
+   "category": "landmarks",
+   "file_stem": "pacenote_past_rock",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "past_tree",
+   "text": "past tree",
+   "category": "landmarks",
+   "file_stem": "pacenote_past_tree",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "past_wall",
+   "text": "past wall",
+   "category": "landmarks",
+   "file_stem": "pacenote_past_wall",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "through_bridge",
+   "text": "through bridge",
+   "category": "landmarks",
+   "file_stem": "pacenote_through_bridge",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "through_gate",
+   "text": "through gate",
+   "category": "landmarks",
+   "file_stem": "pacenote_through_gate",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "through_tunnel",
+   "text": "through tunnel",
+   "category": "landmarks",
+   "file_stem": "pacenote_through_tunnel",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "under_bridge",
+   "text": "under bridge",
+   "category": "landmarks",
+   "file_stem": "pacenote_under_bridge",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "dont_go_wide",
+   "text": "don't go wide",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_dont_go_wide",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "early",
+   "text": "early",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_early",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "go_wide",
+   "text": "go wide",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_go_wide",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "late",
+   "text": "late",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_late",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "middle",
+   "text": "middle",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_middle",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "middle_over_crest",
+   "text": "middle over crest",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_middle_over_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "narrows",
+   "text": "narrows",
+   "category": "hazards",
+   "file_stem": "pacenote_narrows",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "nips",
+   "text": "nips",
+   "category": "hazards",
+   "file_stem": "pacenote_nips",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "twisty",
+   "text": "twisty",
+   "category": "hazards",
+   "file_stem": "pacenote_twisty",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "wide",
+   "text": "wide",
+   "category": "cuts & lines",
+   "file_stem": "pacenote_wide",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "be_brave",
+   "text": "be brave",
+   "category": "speed & braking",
+   "file_stem": "pacenote_be_brave",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "brake",
+   "text": "brake",
+   "category": "speed & braking",
+   "file_stem": "pacenote_brake",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "brake_over_bumps",
+   "text": "brake over bumps",
+   "category": "speed & braking",
+   "file_stem": "pacenote_brake_over_bumps",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "brake_over_crest",
+   "text": "brake over crest",
+   "category": "speed & braking",
+   "file_stem": "pacenote_brake_over_crest",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "braking",
+   "text": "braking",
+   "category": "speed & braking",
+   "file_stem": "pacenote_braking",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "gets_faster_now",
+   "text": "gets faster now",
+   "category": "speed & braking",
+   "file_stem": "pacenote_gets_faster_now",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "into_turn",
+   "text": "into turn",
+   "category": "speed & braking",
+   "file_stem": "pacenote_into_turn",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "slowing",
+   "text": "slowing",
+   "category": "speed & braking",
+   "file_stem": "pacenote_slowing",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "stop",
+   "text": "stop",
+   "category": "speed & braking",
+   "file_stem": "pacenote_stop",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "turn",
+   "text": "turn",
+   "category": "speed & braking",
+   "file_stem": "pacenote_turn",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "over_finish",
+   "text": "over finish",
+   "category": "speed & braking",
+   "file_stem": "pacenote_over_finish",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "to_stop",
+   "text": "to stop",
+   "category": "speed & braking",
+   "file_stem": "pacenote_to_stop",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "onto_gravel",
+   "text": "onto gravel",
+   "category": "surface",
+   "file_stem": "pacenote_onto_gravel",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "onto_ice",
+   "text": "onto ice",
+   "category": "surface",
+   "file_stem": "pacenote_onto_ice",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "onto_mud",
+   "text": "onto mud",
+   "category": "surface",
+   "file_stem": "pacenote_onto_mud",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "onto_tarmac",
+   "text": "onto tarmac",
+   "category": "surface",
+   "file_stem": "pacenote_onto_tarmac",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "slippy",
+   "text": "slippy",
+   "category": "hazards",
+   "file_stem": "pacenote_slippy",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "into_water",
+   "text": "into water",
+   "category": "surface",
+   "file_stem": "pacenote_into_water",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "water",
+   "text": "water",
+   "category": "surface",
+   "file_stem": "pacenote_water",
+   "system_key": null,
+   "system_variant": null
+  },
+  {
+   "id": "watersplash",
+   "text": "watersplash",
+   "category": "surface",
+   "file_stem": "pacenote_watersplash",
+   "system_key": null,
+   "system_variant": null
+  }
+ ]
+}

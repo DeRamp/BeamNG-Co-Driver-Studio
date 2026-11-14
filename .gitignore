@@ -1,0 +1,12 @@
+.venv/
+build/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+# personal voice recordings used by tests/test_trim_real.py (kept local)
+tests/data/real/
+# local projects / exported packs
+*.codriver.lock
+.codriver.lock
+codriver_*.zip
