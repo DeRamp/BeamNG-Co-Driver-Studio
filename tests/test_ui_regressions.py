@@ -657,3 +657,12 @@ def test_export_page_language_choice(win, tmp_path):
     assert Project.open(proj.folder, read_only=True).pack.language == "english"
     page.load_from_project()
     assert page.language.currentText() == "English"
+
+
+def test_window_title_shows_version(win, tmp_path):
+    from codriver_studio import __version__
+    assert win.windowTitle() == f"Co-Driver Studio v{__version__}"
+    win.create_project(tmp_path / "ver", "Title Test")
+    pump(20)
+    assert win.windowTitle() == f"Title Test · Co-Driver Studio v{__version__}"
+    assert __version__ == "1.1.0"

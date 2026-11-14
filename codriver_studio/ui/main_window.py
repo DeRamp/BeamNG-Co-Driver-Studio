@@ -218,9 +218,9 @@ class MainWindow(QMainWindow):
     def _update_title(self):
         if self.ctl:
             ro = "  (read-only)" if self.ctl.read_only else ""
-            self.setWindowTitle(f"{self.ctl.project.pack.persona}{ro} · Co-Driver Studio")
+            self.setWindowTitle(f"{self.ctl.project.pack.persona}{ro} · Co-Driver Studio v{__version__}")
         else:
-            self.setWindowTitle("Co-Driver Studio")
+            self.setWindowTitle(f"Co-Driver Studio v{__version__}")
 
     # ------------------------------------------------------------------ projects
     def new_project(self):
