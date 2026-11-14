@@ -11,7 +11,8 @@ from PySide6.QtWidgets import (QCheckBox, QGroupBox, QHBoxLayout, QLabel, QPlain
 
 from ... import sample_calls
 from .. import theme
-from ..widgets import ElidedLabel, FlowLayout, page_header
+from ..timing import TimingRow
+from ..widgets import ElidedLabel, FlowLayout, hint_label, page_header
 from ..workers import run_async
 
 TOKEN = "sample-call"
@@ -108,6 +109,23 @@ class SampleCallsPage(QWidget):
         row.addWidget(self.cb_vary)
         row.addStretch(1)
         outer.addLayout(row)
+
+        # timing: the same pack gap settings the export uses; changing one replays the last call
+        tbox = QGroupBox("Timing")
+        tv = QVBoxLayout(tbox)
+        tv.setContentsMargins(10, 8, 10, 8)
+        tv.setSpacing(4)
+        self.timing = TimingRow(ctl)
+        self.timing.changed.connect(self._timing_changed)
+        tv.addWidget(self.timing)
+        tv.addWidget(hint_label("Saved with your pack and used when you export. Changing a value replays "
+                                "the last call so you can hear the difference."))
+        outer.addWidget(tbox)
+        self._last_notes = None
+        self._replay_timer = QTimer(self)
+        self._replay_timer.setSingleShot(True)
+        self._replay_timer.setInterval(400)
+        self._replay_timer.timeout.connect(self._replay)
 
         self.info = QLabel("")
         self.info.setWordWrap(True)
@@ -268,7 +286,20 @@ class SampleCallsPage(QWidget):
             return
         self._compose([list(self.ids)])
 
+    def _timing_changed(self, _field):
+        if self._last_notes:
+            self._replay_timer.start()          # debounced: spinning through values replays once
+
+    def _replay(self):
+        if self._last_notes and self.isVisible():
+            notes, transcript = self._last_notes
+            self._compose(notes, transcript)
+
+    def set_read_only(self, ro: bool):
+        self.timing.set_read_only(ro)
+
     def _compose(self, notes, transcript=None):
+        self._last_notes = ([list(n) for n in notes], transcript)
         proj = self.ctl.project
         out_sr = self._out_sr()
         rng = random.Random(self.rng.random()) if self.cb_vary.isChecked() else None

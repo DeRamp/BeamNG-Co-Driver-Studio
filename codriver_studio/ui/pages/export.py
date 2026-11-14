@@ -19,6 +19,7 @@ from .. import settings as st
 from .. import theme
 from ..errors import log
 from ..widgets import ElidedLabel, FlowLayout, hint_label, page_header, wrappable_path
+from ..timing import GAPS, make_gap_spin, set_gap
 from ..workers import run_async
 
 try:
@@ -34,16 +35,6 @@ except ImportError:   # pragma: no cover - only with very old/fake project modul
     def dialects_for(language):
         return [(c, l) for c, (o, l) in BUILTIN_DIALECTS.items() if o == language_id(language)]
 RATES = [24000, 44100, 48000]
-GAPS = [
-    ("link_word_gap_ms", "After “into” / “and”", -200, 200,
-     "Gap after a link word. Negative values overlap the words slightly for a fast, natural flow."),
-    ("corner_gap_ms", "Inside a corner call", -200, 200,
-     "Between the parts of one corner, e.g. “three left” → “long” → “tightens”."),
-    ("phrase_gap_ms", "Between other words", -200, 200,
-     "Between all other words in one call."),
-    ("pacenote_gap_ms", "Between calls", -100, 400,
-     "Pause between two separate calls."),
-]
 RESTART_NOTE = ("Restart BeamNG (or press <b>Ctrl+L</b> in game) to load the new pack. "
                 "Then select it in a rally mission's start screen → <b>Co-driver</b>.")
 
@@ -150,12 +141,8 @@ class ExportPage(QWidget):
         r = 0
         for field, label, lo, hi, help_ in GAPS:
             lab = QLabel(label)
-            sp = QSpinBox()
-            sp.setRange(lo, hi)
-            sp.setSingleStep(10)
-            sp.setSuffix(" ms")
-            sp.setToolTip(help_)
-            sp.valueChanged.connect(lambda v, k=field: self._set(k, int(v)))
+            sp = make_gap_spin(field, lo, hi, help_)
+            sp.valueChanged.connect(self._gap_changed)
             g.addWidget(lab, r, 0)
             g.addWidget(sp, r, 1)
             # the explanation goes under the control (full width), not in a squeezed third column
@@ -163,7 +150,9 @@ class ExportPage(QWidget):
             self.gap_spins[field] = sp
             g.setRowMinimumHeight(r + 2, 8)
             r += 3
-        g.addWidget(hint_label("Tip: try changes on the Sample Calls page. They apply instantly."), r, 0, 1, 3)
+        g.addWidget(hint_label("Also adjustable on the Sample Calls page while you listen. "
+                               "Both pages share these values and they are used for the export."), r, 0, 1, 3)
+        ctl.packChanged.connect(self._pack_changed)
         self._gaps_box = gaps
 
         # ---- export
@@ -305,6 +294,18 @@ class ExportPage(QWidget):
             return
         setattr(pk, key, value)
         self.ctl.save()
+
+    def _gap_changed(self, value):
+        if self._loading or self.sender() is None:
+            return
+        set_gap(self.ctl, self.sender().property("gap_field"), value)
+
+    def _pack_changed(self, field):
+        sp = self.gap_spins.get(field)
+        if sp is not None:
+            sp.blockSignals(True)
+            sp.setValue(int(getattr(self.ctl.project.pack, field, 0)))
+            sp.blockSignals(False)
 
     # ------------------------------------------------------------------ language / dialect
     def _show_language(self, language: str, dialect: str):

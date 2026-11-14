@@ -125,7 +125,7 @@ class Workspace(QWidget):
         self._progress(*ctl.progress())
         self._title()
         if ctl.read_only:
-            for p in (self.phrases.panel, self.record, self.effects, self.export):
+            for p in (self.phrases.panel, self.record, self.effects, self.samples, self.export):
                 p.set_read_only(True)
 
     def _title(self):

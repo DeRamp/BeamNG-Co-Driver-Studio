@@ -21,6 +21,7 @@ class TakeGone(LookupError):
 class Controller(QObject):
     phraseChanged = Signal(str)      # takes / trims / enable state of one phrase changed
     projectChanged = Signal()        # effects / pack info / many phrases changed
+    packChanged = Signal(str)        # one pack field changed (e.g. a timing gap) → keep pages in sync
     progressChanged = Signal(int, int)
     openPhraseRequested = Signal(str, int)   # (phrase_id, take_index or -1) → Phrases page take panel
     recordRequested = Signal(str)            # → Record page on that phrase

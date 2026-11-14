@@ -24,6 +24,7 @@ Record your own rally co-driver voice pack for BeamNG.drive. Windows, nothing to
 4. **Effects**: pick a preset (Helmet Intercom, Rally Radio, Old CB, Walkie-Talkie) or tweak sliders.
    Your raw recordings are never changed.
 5. **Sample Calls**: type e.g. `three left into hard right don't cut 100` and press Play.
+   Adjust the **Timing** (gaps between words and calls) while you listen; it's saved and exported with your pack.
 6. **Pack & Export → Install to BeamNG**.
 
 ## Use it in-game

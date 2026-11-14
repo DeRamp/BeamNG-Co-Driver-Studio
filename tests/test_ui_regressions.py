@@ -665,4 +665,77 @@ def test_window_title_shows_version(win, tmp_path):
     win.create_project(tmp_path / "ver", "Title Test")
     pump(20)
     assert win.windowTitle() == f"Title Test · Co-Driver Studio v{__version__}"
-    assert __version__ == "1.1.0"
+    assert __version__ == "1.2.0"
+
+
+# ---------------------------------------------------------------- timing on the Sample Calls page
+def test_sample_calls_timing_syncs_with_export_and_is_exported(win, tmp_path):
+    import json as _json
+    from codriver_studio import exporter
+    from codriver_studio.project import Project
+    proj = win.create_project(tmp_path / "timing", "Timing")
+    ws = win.workspace
+    sc, ex = ws.samples, ws.export
+    for pid in ("three_left", "hard_right"):
+        proj.add_take(pid, speechish(SR, 2, 1), SR)
+
+    # changing a gap on Sample Calls updates the pack, the export page and the saved project
+    ws.show_page(3)
+    pump(20)
+    sc.timing.spins["phrase_gap_ms"].setValue(120)
+    sc.timing.spins["pacenote_gap_ms"].setValue(300)
+    pump(20)
+    assert proj.pack.phrase_gap_ms == 120 and proj.pack.pacenote_gap_ms == 300
+    assert ex.gap_spins["phrase_gap_ms"].value() == 120 and ex.gap_spins["pacenote_gap_ms"].value() == 300
+    saved = _json.loads((proj.folder / "project.json").read_text("utf-8"))["pack"]
+    assert saved["phrase_gap_ms"] == 120 and saved["pacenote_gap_ms"] == 300
+
+    # and the other way round
+    ex.gap_spins["link_word_gap_ms"].setValue(-80)
+    pump(20)
+    assert sc.timing.spins["link_word_gap_ms"].value() == -80 and proj.pack.link_word_gap_ms == -80
+
+    # the exported voicepack.json carries the values set on the Sample Calls page
+    ent, _ = exporter.build_voicepack_infos(Project.open(proj.folder, read_only=True))
+    assert ent["phraseGapMs"] == 120 and ent["pacenoteGapMs"] == 300 and ent["linkWordGapMs"] == -80
+
+
+def test_sample_calls_timing_change_replays_last_call_with_new_gap(win, tmp_path):
+    proj = win.create_project(tmp_path / "replay", "Replay")
+    ws = win.workspace
+    sc = ws.samples
+    for pid in ("three_left", "hard_right"):
+        proj.add_take(pid, speechish(SR, 2, 2), SR)
+    ws.show_page(3)
+    pump(20)
+    sc.cb_vary.setChecked(False)
+    sc.edit.setPlainText("three left hard right")
+    sc.play()
+    assert wait_until(lambda: sc.btn_play.isEnabled() and getattr(sc, "last_audio", None) is not None, 10)
+    n0 = len(sc.last_audio[0])
+    win.audio.stop_playback()
+    sc.last_audio = None
+    sc.timing.spins["corner_gap_ms"].setValue(200)     # both phrases are corner parts → corner gap
+    assert wait_until(lambda: getattr(sc, "last_audio", None) is not None, 10), "no replay after a timing change"
+    n1 = len(sc.last_audio[0])
+    assert n1 - n0 == pytest.approx(0.2 * sc.last_audio[1], abs=0.02 * sc.last_audio[1])
+    win.audio.stop_playback()
+
+
+def test_sample_calls_timing_disabled_when_read_only(win, tmp_path, monkeypatch):
+    from PySide6.QtWidgets import QMessageBox
+    proj = win.create_project(tmp_path / "shared_t", "SharedT")
+    w2 = MainWindow()
+    w2.show()
+    pump()
+    try:
+        monkeypatch.setattr(QMessageBox, "question", staticmethod(lambda *a, **k: QMessageBox.Yes))
+        p2 = w2.open_project(proj.folder)
+        assert p2 is not None and p2.read_only
+        spins = w2.workspace.samples.timing.spins
+        assert spins and not any(sp.isEnabled() for sp in spins.values())
+    finally:
+        w2.close()
+        pump()
+        w2.deleteLater()
+        pump()
