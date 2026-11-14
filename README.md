@@ -39,3 +39,6 @@ python -m venv .venv
 ```
 The phrase list comes from the game: `python tools\build_catalog.py` refreshes it after a BeamNG update.
 Voice pack format notes: [ARCHITECTURE.md](ARCHITECTURE.md).
+
+## License
+MIT, see [LICENSE](LICENSE). Not affiliated with BeamNG GmbH.
