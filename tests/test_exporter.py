@@ -419,3 +419,46 @@ def test_translation_used_for_text_sha1(small, tmp_path):
     rep = export_mod(small, tmp_path / "t.zip")
     meta = json.loads(zipfile.ZipFile(rep.zip_path).read(f"{VP}/{small.pack.dirname}/metadata.json"))
     assert meta["pacenote_easy_right.ogg"]["sha1"] == hashlib.sha1("leicht rechts".encode()).hexdigest()
+
+
+# ---------------------------------------------------------------- pack language
+def test_language_defaults_to_english_and_old_projects_load(small, tmp_path):
+    assert small.pack.language == "english"
+    ent, _ = exporter.build_voicepack_infos(small)
+    assert ent["language"] == "ui.options.rally.languages.english.name"
+    assert ent["dialect"] == "ui.options.rally.dialects.en-US.name"
+    # a project saved before the language field existed opens as English
+    data = json.loads((small.folder / "project.json").read_text(encoding="utf-8"))
+    data["pack"].pop("language")
+    (small.folder / "project.json").write_text(json.dumps(data), encoding="utf-8")
+    assert Project.open(small.folder).pack.language == "english"
+
+
+def test_builtin_spanish_uses_game_keys(small):
+    small.pack.language, small.pack.dialect = "spanish", "es-ES"
+    ent, cas = exporter.build_voicepack_infos(small)
+    for vp in (ent, cas):
+        assert vp["language"] == "ui.options.rally.languages.spanish.name"
+        assert vp["dialect"] == "ui.options.rally.dialects.es-ES.name"
+
+
+def test_custom_language_written_literally_and_saved(small, tmp_path):
+    small.pack.language, small.pack.dialect = "Русский", ""
+    small.save()
+    reopened = Project.open(small.folder)
+    assert reopened.pack.language == "Русский"
+    rep = export_mod(reopened, tmp_path / "ru.zip")
+    z = zipfile.ZipFile(rep.zip_path)
+    ent = json.loads(z.read(f"{VP}/{reopened.pack.dirname}/voicepack.json").decode("utf-8"))
+    assert ent["language"] == "Русский"
+    assert "dialect" not in ent                 # empty dialect is simply omitted
+    assert lua_read_info_entry_ok(ent)          # still listed by the game
+
+
+def test_language_id_and_dialects_for():
+    from codriver_studio.project import dialects_for, language_id
+    assert language_id(" English ") == "english" and language_id("SPANISH") == "spanish"
+    assert language_id("Deutsch") == "Deutsch"
+    assert [c for c, _ in dialects_for("english")] == ["en-US", "en-GB"]
+    assert [c for c, _ in dialects_for("Spanish")] == ["es-ES"]
+    assert dialects_for("Deutsch") == []

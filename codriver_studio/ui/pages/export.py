@@ -21,7 +21,18 @@ from ..errors import log
 from ..widgets import ElidedLabel, FlowLayout, hint_label, page_header, wrappable_path
 from ..workers import run_async
 
-DIALECTS = [("en-US", "English (US)"), ("en-GB", "English (UK)")]
+try:
+    from ...project import BUILTIN_DIALECTS, BUILTIN_LANGUAGES, dialects_for, language_id
+except ImportError:   # pragma: no cover - only with very old/fake project modules
+    BUILTIN_LANGUAGES = {"english": "English"}
+    BUILTIN_DIALECTS = {"en-US": ("english", "English (US)"), "en-GB": ("english", "English (UK)")}
+
+    def language_id(text):
+        t = (text or "").strip()
+        return "english" if t.lower() in ("english",) else t
+
+    def dialects_for(language):
+        return [(c, l) for c, (o, l) in BUILTIN_DIALECTS.items() if o == language_id(language)]
 RATES = [24000, 44100, 48000]
 GAPS = [
     ("link_word_gap_ms", "After “into” / “and”", -200, 200,
@@ -92,10 +103,24 @@ class ExportPage(QWidget):
         self.author = QLineEdit()
         self.author.setPlaceholderText("Your name (optional)")
         self.author.editingFinished.connect(lambda: self._set("author", self.author.text().strip()))
+        # Language: builtin ones map to the game's own translations; or type any name ("Русский").
+        self.language = QComboBox()
+        self.language.setEditable(True)
+        self.language.setInsertPolicy(QComboBox.NoInsert)
+        for key, label in BUILTIN_LANGUAGES.items():
+            self.language.addItem(label, key)
+        self.language.lineEdit().setPlaceholderText("Pick one or type your own")
+        self.language.setToolTip("Shown in BeamNG's co-driver list. Pick a language or type any name, "
+                                 "e.g. Deutsch or Русский.")
+        self.language.activated.connect(self._language_changed)
+        self.language.lineEdit().editingFinished.connect(self._language_changed)
+        # Dialect: suggestions follow the language; free text allowed; empty = none
         self.dialect = QComboBox()
-        for code, label in DIALECTS:
-            self.dialect.addItem(f"{label}  ·  {code}", code)
-        self.dialect.currentIndexChanged.connect(lambda _: self._set("dialect", self.dialect.currentData()))
+        self.dialect.setEditable(True)
+        self.dialect.setInsertPolicy(QComboBox.NoInsert)
+        self.dialect.lineEdit().setPlaceholderText("Optional, e.g. de-AT")
+        self.dialect.activated.connect(self._dialect_changed)
+        self.dialect.lineEdit().editingFinished.connect(self._dialect_changed)
         self.rate = QComboBox()
         for r in RATES:
             self.rate.addItem(f"{r / 1000:g} kHz" + ("  (recommended)" if r == 48000 else ""), r)
@@ -106,7 +131,10 @@ class ExportPage(QWidget):
         f.addRow("Co-driver name", self.persona)
         f.addRow("", self.pack_id)
         f.addRow("Author", self.author)
+        f.addRow("Language", self.language)
         f.addRow("Dialect", self.dialect)
+        f.addRow("", hint_label("Shown in BeamNG's co-driver list. You can record the calls in any language; "
+                                "the script on the Record page stays in English, so translate as you read."))
         f.addRow("Sample rate", self.rate)
         f.addRow("", self.casual)
         f.addRow("", hint_label("The casual style uses fewer words per call. Same voice, no extra recording."))
@@ -229,7 +257,8 @@ class ExportPage(QWidget):
         self._arrange(narrow=self.width() < need)
 
     def set_read_only(self, ro: bool):
-        for w in (self.persona, self.author, self.dialect, self.rate, self.casual, *self.gap_spins.values()):
+        for w in (self.persona, self.author, self.language, self.dialect, self.rate, self.casual,
+                  *self.gap_spins.values()):
             w.setEnabled(not ro)
 
     def _progress_changed(self, *_):
@@ -241,11 +270,7 @@ class ExportPage(QWidget):
         pk = self.ctl.project.pack
         self.persona.setText(pk.persona)
         self.author.setText(getattr(pk, "author", ""))
-        i = self.dialect.findData(getattr(pk, "dialect", "en-US"))
-        if i < 0:
-            self.dialect.addItem(str(pk.dialect), pk.dialect)
-            i = self.dialect.count() - 1
-        self.dialect.setCurrentIndex(i)
+        self._show_language(getattr(pk, "language", "english"), getattr(pk, "dialect", "en-US"))
         rate = int(getattr(pk, "export_sample_rate", 48000))
         i = self.rate.findData(rate)
         if i < 0:
@@ -280,6 +305,62 @@ class ExportPage(QWidget):
             return
         setattr(pk, key, value)
         self.ctl.save()
+
+    # ------------------------------------------------------------------ language / dialect
+    def _show_language(self, language: str, dialect: str):
+        """Put the pack's language + dialect into the two combos without saving anything."""
+        was, self._loading = self._loading, True
+        try:
+            lang = language_id(language)
+            i = self.language.findData(lang)
+            if i >= 0:
+                self.language.setCurrentIndex(i)
+            else:
+                self.language.setCurrentIndex(-1)
+                self.language.setEditText(lang)
+            self.dialect.clear()
+            for code, label in dialects_for(lang):
+                self.dialect.addItem(f"{label}  ·  {code}", code)
+            j = self.dialect.findData(dialect)
+            if j >= 0:
+                self.dialect.setCurrentIndex(j)
+            else:
+                self.dialect.setCurrentIndex(-1)
+                self.dialect.setEditText(dialect or "")
+        finally:
+            self._loading = was
+
+    def _combo_value(self, combo: QComboBox) -> str:
+        """Data of the chosen item, or the typed text when it doesn't match an item's label."""
+        text = combo.currentText().strip()
+        i = combo.currentIndex()
+        if i >= 0 and combo.itemText(i) == combo.currentText():
+            return combo.itemData(i)
+        j = combo.findText(text, Qt.MatchFixedString)
+        return combo.itemData(j) if j >= 0 else text
+
+    def _language_changed(self, *_):
+        if self._loading:
+            return
+        pk = self.ctl.project.pack
+        lang = language_id(self._combo_value(self.language))
+        if not lang:                                  # emptied: put the current value back
+            self._show_language(pk.language, pk.dialect)
+            return
+        if lang == pk.language:
+            return
+        # keep the dialect only if it still fits the new language
+        options = [c for c, _ in dialects_for(lang)]
+        dialect = pk.dialect if (pk.dialect in options or (not options and pk.dialect not in BUILTIN_DIALECTS)) \
+            else (options[0] if options else "")
+        pk.language, pk.dialect = lang, dialect
+        self.ctl.save()
+        self._show_language(lang, dialect)
+
+    def _dialect_changed(self, *_):
+        if self._loading:
+            return
+        self._set("dialect", self._combo_value(self.dialect))
 
     def _persona_changed(self):
         name = self.persona.text().strip()

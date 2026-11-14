@@ -120,6 +120,29 @@ class Take:
                    extra=extra)
 
 
+# Languages / dialects the game already has translation keys for
+# (ui.options.rally.languages.<id>.name / ui.options.rally.dialects.<code>.name).
+BUILTIN_LANGUAGES = {"english": "English", "spanish": "Spanish"}
+BUILTIN_DIALECTS = {"en-US": ("english", "English (US)"),
+                    "en-GB": ("english", "English (UK)"),
+                    "es-ES": ("spanish", "Spanish (Spain)")}
+
+
+def language_id(text: str) -> str:
+    """Map user input to a builtin language id when it names one ("English", " spanish "), else keep it."""
+    t = (text or "").strip()
+    for key, label in BUILTIN_LANGUAGES.items():
+        if t.lower() in (key, label.lower()):
+            return key
+    return t
+
+
+def dialects_for(language: str) -> list[tuple[str, str]]:
+    """[(code, label)] of builtin dialects for a language id ([] for custom languages)."""
+    lang = language_id(language)
+    return [(code, label) for code, (owner, label) in BUILTIN_DIALECTS.items() if owner == lang]
+
+
 GAP_BOUNDS_MS = {"link_word_gap_ms": (-200, 200), "corner_gap_ms": (-200, 200), "phrase_gap_ms": (-200, 200),
                  "pacenote_gap_ms": (-100, 400), "casual_link_word_gap_ms": (-200, 200),
                  "casual_corner_gap_ms": (-200, 200), "casual_phrase_gap_ms": (-200, 200),
@@ -160,7 +183,10 @@ def valid_dirname(name) -> bool:
 class PackInfo:
     persona: str = "My Co-Driver"          # literal display name, shown raw in the game's picker
     author: str = ""
-    dialect: str = "en-US"                 # en-US / en-GB → game keys; anything else written literally
+    # Language shown in the game's co-driver picker: a BUILTIN_LANGUAGES id ("english", "spanish")
+    # becomes the game's translation key; anything else (e.g. "Русский") is written literally.
+    language: str = "english"
+    dialect: str = "en-US"                 # BUILTIN_DIALECTS code → game key; anything else literal; "" = none
     # Generated ONCE at creation (``make_dirname``) and never regenerated, even if the persona
     # changes: two mods with the same dirname merge in the game, and the in-game selection is
     # remembered by dirname. Re-exports therefore always overwrite the same pack.

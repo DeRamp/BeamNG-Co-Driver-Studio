@@ -150,7 +150,7 @@ Must not crash when no mic / no output device exists: raise `AudioDeviceError` w
 Project = folder: `project.json` + `takes/<phrase_id>/take_###.wav` (raw, untrimmed, device rate).
 ```python
 @dataclass class Take: file (relative posix path); trim_start; trim_end; enabled=True; auto_trimmed=True; created (iso str); duration (raw seconds)
-@dataclass class PackInfo: persona="My Co-Driver"; author=""; dialect="en-US"; dirname (generated once, see format notes);
+@dataclass class PackInfo: persona="My Co-Driver"; author=""; language="english" (builtin id english/spanish → game key, else literal); dialect="en-US" ("" = omitted); dirname (generated once, see format notes);
     version="1.0"; export_sample_rate=48000; link_word_gap_ms=-40; corner_gap_ms=0; phrase_gap_ms=0; pacenote_gap_ms=100;
     include_casual=True; codriver_timing_offset_s=0.0
 class Project:

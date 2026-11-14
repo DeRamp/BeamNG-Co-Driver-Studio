@@ -32,14 +32,13 @@ from pathlib import Path
 import soundfile as sf
 
 from . import dsp
-from .project import clamp_gap_ms
+from .project import BUILTIN_DIALECTS, BUILTIN_LANGUAGES, clamp_gap_ms, language_id
 
 __all__ = ["ExportReport", "ExportError", "ExportCancelled", "missing_phrases", "export_mod",
            "beamng_mods_dir", "beamng_running", "plan_export", "build_voicepack_infos",
            "VOICEPACKS_DIR", "default_zip_path", "COUNTDOWN_MAX_S", "RESTART_NOTICE"]
 
 VOICEPACKS_DIR = "lua/ge/extensions/gameplay/rally/compositors/voicepacks"
-BUILTIN_DIALECTS = {"en-US", "en-GB"}
 BEAMNG_EXE = "BeamNG.drive.x64.exe"
 COUNTDOWN_MAX_S = 0.9       # countdown clips are queued once per second
 RESTART_NOTICE = ("BeamNG caches voice packs for the whole session: restart the game (or reload Lua "
@@ -116,14 +115,19 @@ def plan_export(project) -> tuple[list[_PlannedFile], list[str], list[str]]:
 
 
 def _language_value(project) -> str:
-    cat = project.catalog
-    if cat.language == "en":
-        return "ui.options.rally.languages.english.name"
-    return cat.language_label or cat.language     # shown raw by the game
+    lang = language_id(getattr(project.pack, "language", "") or "")
+    if not lang:                                   # unset → follow the phrase catalog
+        cat = project.catalog
+        lang = "english" if cat.language == "en" else (cat.language_label or cat.language)
+    if lang in BUILTIN_LANGUAGES:
+        return f"ui.options.rally.languages.{lang}.name"
+    return lang                                    # literal: the game shows it raw
 
 
-def _dialect_value(dialect: str) -> str:
-    dialect = (dialect or "en-US").strip() or "en-US"
+def _dialect_value(dialect: str) -> str | None:
+    dialect = (dialect or "").strip()
+    if not dialect:
+        return None                                # optional in voicepack.json
     if dialect in BUILTIN_DIALECTS:
         return f"ui.options.rally.dialects.{dialect}.name"
     return dialect                                # literal (the game falls back to the raw string)
@@ -135,8 +139,10 @@ def build_voicepack_infos(project) -> tuple[dict, dict | None]:
     common = {
         "persona": (pack.persona or "").strip() or pack.slug,
         "language": _language_value(project),
-        "dialect": _dialect_value(pack.dialect),
     }
+    dialect = _dialect_value(pack.dialect)
+    if dialect:
+        common["dialect"] = dialect
     enthusiast = {
         **common,
         "compositorStyle": "english/enthusiast",

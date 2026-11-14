@@ -619,3 +619,41 @@ def test_phrase_navigation_mid_take_keeps_it_on_the_recorded_phrase(win, tmp_pat
     assert len(proj.takes(pid)) == 1, "navigating away discarded the take in progress"
     assert rec.pid != pid or key == "go_prev"
     assert not win.audio.is_playing      # navigation never autoplays the stopped take
+
+
+# ---------------------------------------------------------------- pack language on the export page
+def test_export_page_language_choice(win, tmp_path):
+    proj = win.create_project(tmp_path / "lang", "Lang")
+    ws = win.workspace
+    ws.show_page(4)
+    pump(20)
+    page = ws.export
+    assert page.language.currentText() == "English" and page.dialect.currentData() == "en-US"
+
+    # builtin: Spanish → dialect list follows, defaults to es-ES
+    page.language.setCurrentIndex(page.language.findData("spanish"))
+    page.language.activated.emit(page.language.currentIndex())
+    pump(20)
+    assert proj.pack.language == "spanish" and proj.pack.dialect == "es-ES"
+    assert [page.dialect.itemData(i) for i in range(page.dialect.count())] == ["es-ES"]
+
+    # custom: typed name is kept literally, builtin dialect is dropped, free-text dialect allowed
+    page.language.setEditText("Русский")
+    page.language.lineEdit().editingFinished.emit()
+    pump(20)
+    assert proj.pack.language == "Русский" and proj.pack.dialect == ""
+    assert page.dialect.count() == 0
+    page.dialect.setEditText("ru-RU")
+    page.dialect.lineEdit().editingFinished.emit()
+    pump(20)
+    assert proj.pack.dialect == "ru-RU"
+
+    # typing a builtin's name maps to its id; saved and shown again after reopening
+    page.language.setEditText("english")
+    page.language.lineEdit().editingFinished.emit()
+    pump(20)
+    assert proj.pack.language == "english" and proj.pack.dialect == "en-US"
+    from codriver_studio.project import Project
+    assert Project.open(proj.folder, read_only=True).pack.language == "english"
+    page.load_from_project()
+    assert page.language.currentText() == "English"
